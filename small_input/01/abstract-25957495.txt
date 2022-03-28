@@ -1,0 +1,51 @@
+1. Mol Genet Genomics. 2015 Oct;290(5):2031-46. doi: 10.1007/s00438-015-1051-5. 
+Epub 2015 May 10.
+
+Global alterations of the transcriptional landscape during yeast growth and 
+development in the absence of Ume6-dependent chromatin modification.
+
+Lardenois A(1)(2), Becker E(1), Walther T(3)(4), Law MJ(5), Xie B(1), Demougin 
+P(3), Strich R(5), Primig M(6).
+
+Author information:
+(1)Inserm U1085-IRSET, University of Rennes 1, 35042, Rennes, France.
+(2)INRA, UMR 703, ONIRIS, 44307, Nantes, France.
+(3)Biozentrum, University of Basel, 4056, Basel, Switzerland.
+(4)INSA, UMR CNRS 5504 and INRA 792, 31077, Toulouse, France.
+(5)School of Osteopathic Medicine, Rowan University, Stratford, NJ, 08084, USA.
+(6)Inserm U1085-IRSET, University of Rennes 1, 35042, Rennes, France. 
+michael.primig@inserm.fr.
+
+Chromatin modification enzymes are important regulators of gene expression and 
+some are evolutionarily conserved from yeast to human. Saccharomyces cerevisiae 
+is a major model organism for genome-wide studies that aim at the identification 
+of target genes under the control of conserved epigenetic regulators. Ume6 
+interacts with the upstream repressor site 1 (URS1) and represses transcription 
+by recruiting both the conserved histone deacetylase Rpd3 (through the 
+co-repressor Sin3) and the chromatin-remodeling factor Isw2. Cells lacking Ume6 
+are defective in growth, stress response, and meiotic development. RNA profiling 
+studies and in vivo protein-DNA binding assays identified mRNAs or transcript 
+isoforms that are directly repressed by Ume6 in mitosis. However, a 
+comprehensive understanding of the transcriptional alterations, which underlie 
+the complex ume6Δ mutant phenotype during fermentation, respiration, or 
+sporulation, is lacking. We report the protein-coding transcriptome of a diploid 
+MAT a/α wild-type and ume6/ume6 mutant strains cultured in rich media with 
+glucose or acetate as a carbon source, or sporulation-inducing medium. We 
+distinguished direct from indirect effects on mRNA levels by combining GeneChip 
+data with URS1 motif predictions and published high-throughput in vivo Ume6-DNA 
+binding data. To gain insight into the molecular interactions between successive 
+waves of Ume6-dependent meiotic genes, we integrated expression data with 
+information on protein networks. Our work identifies novel Ume6 repressed genes 
+during growth and development and reveals a strong effect of the carbon source 
+on the derepression pattern of transcripts in growing and developmentally 
+arrested ume6/ume6 mutant cells. Since yeast is a useful model organism for 
+chromatin-mediated effects on gene expression, our results provide a rich source 
+for further genetic and molecular biological work on the regulation of cell 
+growth and cell differentiation in eukaryotes.
+
+DOI: 10.1007/s00438-015-1051-5
+PMCID: PMC5469029
+PMID: 25957495 [Indexed for MEDLINE]
+
+Conflict of interest statement: Conflict of interest: The authors disclose no 
+conflicts of interest.

@@ -1,0 +1,8 @@
+BeautifulSoup==3.2.2
+matplotlib==2.2.5
+numpy==1.16.6
+pytorch-pretrained-bert==0.6.2
+requests==2.26.0
+spacy==2.3.7
+torch==1.4.0
+transformers==4.6.1

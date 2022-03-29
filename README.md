@@ -17,7 +17,7 @@ python -m spacy download en_core_web_trf
 
 2. Change the working directory into the model codes.
    ```
-   cd TFBTFRnlp
+   cd YTLR
    ```
    
 3. Download the model from the following link and unzip the file. Please skip it if you have done this step.

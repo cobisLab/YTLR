@@ -25,6 +25,29 @@ conda create -n "YTLR" python=3.8.5
 conda activate YTLR
 ```
 
+4. If you are using APPLE MAC systems, please install wget first:
+
+```
+brew install wget
+``` 
+
+If you are using Microsoft Windows systems, please install wget first:
+
+```
+conda install -c menpo wget
+``` 
+
+5. If you want to leave the YTLR Conda envrionment, please type:
+
+```
+conda deactivate YTLR
+```
+
+6. **Notice!** Because the PMC FTP service will be updated daily, we recommend executing the following command before using YTLR functions.
+ 
+``` python update_PMC_xml.py```
+
+
 # Steps to Use YTLR
 
 1. Download the codes. Please skip this if you have already downloaded the codes.
@@ -77,18 +100,11 @@ pip install https://github.com/explosion/spacy-models/releases/download/en_core_
     >>![](https://i.imgur.com/36LDa3P.png)
 
 
-
-
-
 7. (Optional) Users can specify the full-texts of the selected abstracts by themselves. However, this is an optional step. YTLR can also help retrieve the available PMC full-texts using the PMC FTP service (Detail can be found <a href ="https://www.ncbi.nlm.nih.gov/pmc/tools/ftp/">here</a>). 
 
     >***HOW TO GET FULL TEXT FROM PMC***
     >>1. Browse the PubMed website(https://www.ncbi.nlm.nih.gov/pmc/) and choose the paper you want.
     >>2. You can get the full content of the website by using the right mouse button and clicking "save as new file" to save it as an HTML file. 
-
-    >**Notice!**
-    > Because the files in the PMC FTP service will update every day, we recommend you execute the following command before you execute the main function.
-    >``` python update_PMC_xml.py```
 
 8. Put the abstract .txt file and the full-text .html files in the same input folder.  
 

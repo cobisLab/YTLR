@@ -137,6 +137,9 @@ python main.py -i <path to input directory> -d <tfb/tfr/both> -check <0/1> -o <p
 >* -o: The output directory for the results. 
 
 
+**Notice!**
+It may take a while to download the full texts using the PMC ftp services due to its file package structures. 
+
 # Example and Output Results
 
 If we use the example inputs with the example command:
@@ -151,22 +154,24 @@ The results will be generated in the tfb_output folder.
 
 ```
 tfb_output/ - TFB_article_identification.tsv
+            - non-TFB_articles.txt
             - TF-gene_transcriptional_relation_summary.tsv
-            - Experimental_condition_summary.tsv
             - pmids_cannot_find_fullText.txt
+            - download_xml/ - {PMC4063667}.xml
             - TF-gene_Pair_Details/ - TFB/ - YPR065W_YOR011W/ - 23435728.txt
                                            - {TF_ORF}_{GENE_ORF}/ - {PMID}.txt
 
-                                    - TFR/
 ```
+ 
 
 >**File descriptions:**
 
->* **{TFB/TFR}\_article\_identification.tsv:** Articles contain TFB or TFR evidence.
->* **TF-gene\_transcriptional\_relation\_summary.tsv:** Summary of Stage II outputs.
->* **Experimental\_condition\_summary.tsv:** paragraph contains a potential experiment and potential experimental condition.
->* **pmids\_cannot\_find\_fullText.txt:** contains several PMIDs that can not be found in full text and this file lists per pmid a line. if there is not exist full content of pmids not found, the content of the file will be empty.
->* **TF-gene\_Pair\_Details/{TFB/TFR}/{TF\_ORF}\_{GENE\_ORF}/{PMID}.txt:** Evidence for supportting the TF-gene pair found in the article.
+>* **{TFB/TFR}\_article\_identification.tsv:** Articles that contain TFB or TFR evidence.
+>* **non-{TFB/TFR}\_articles.txt:** Articles that does not contain TFB or TFR evidence.
+>* **TF-gene\_transcriptional\_relation\_summary.tsv:** Summary of TF-gene transcriptional relation conclusion results.
+>* **pmids\_cannot\_find\_fullText.txt:** PMIDs with no available full text. If full texts are available for all articles, the content of the file will be empty.
+>* **download_xml/{PMCID}.xml:** the xml files downloaded from the PMC FTP service.
+>* **TF-gene\_Pair\_Details/{TFB/TFR}/{TF\_ORF}\_{GENE\_ORF}/{PMID}.txt:** Sentence descriptions for the TF-gene pairs found in the articles.
 
 ### **Stage I Outputs**
 
@@ -174,13 +179,14 @@ Stage I outputs contain the following:
 
 ```
 tfb_output/TFB_article_identification.tsv
+tfb_output/non-TFB_articles.txt
 ```
 
-Example: 
+eg. TFB_article_identification.tsv
 
 ```
-PMID    Evidence        Abstract
-25957495    TFB article    Chromatin modification enzymes are important regulators of gene expression and some are evolutionarily conserved from yeast to human. Saccharomyces cerevisiae is a major model organism for genome-wide studies that aim at the identification of target genes under the control of conserved epigenetic regulators. Ume6 interacts with the upstream repressor site 1 (URS1) and represses transcription by recruiting both the conserved histone deacetylase Rpd3 (through the co-repressor Sin3) and the chromatin-remodeling factor Isw2. Cells lacking Ume6 are defective in growth, stress response, and meiotic development. RNA profiling studies and in vivo protein-DNA binding assays identified mRNAs or transcript isoforms that are directly repressed by Ume6 in mitosis. However, a comprehensive understanding of the transcriptional alterations, which underlie the complex ume6Î mutant phenotype during fermentation, respiration, or sporulation, is lacking. We report the protein-coding transcriptome of a diploid MAT a/Î± wild-type and ume6/ume6 mutant strains cultured in rich media with glucose or acetate as a carbon source, or sporulation-inducing medium. We distinguished direct from indirect effects on mRNA levels by combining GeneChip data with URS1 motif predictions and published high-throughput in vivo Ume6-DNA binding data. To gain insight into the molecular interactions between successive waves of Ume6-dependent meiotic genes, we integrated expression data with information on protein networks. Our work identifies novel Ume6 repressed genes during growth and development and reveals a strong effect of the carbon source on the derepression pattern of transcripts in growing and developmentally arrested ume6/ume6 mutant cells. Since yeast is a useful model organism for chromatin-mediated effects on gene expression, our results provide a rich source for further genetic and molecular biological work on the regulation of cell growth and cell differentiation in eukaryotes.
+PMID    PMCID   Evidence        Abstract        Experiment Description
+24236068        PMC3827324      TFB article     The choice between alternative developmental pathways is primarily controlled at the level of transcription. Induction of meiosis in budding yeasts in response to nutrient levels provides a system to investigate the molecular basis of cellular decision-making. In Saccharomyces cerevisiae, entry into meiosis depends on multiple signals converging upon IME1, the master transcriptional activator of meiosis. Here we studied the regulation of the cis-acting regulatory element Upstream Activation Signal (UAS)ru, which resides within the IME1 promoter. Guided by our previous data acquired using a powerful high-throughput screening system, here we provide evidence that UASru is regulated by multiple stimuli that trigger distinct signal transduction pathways as follows: (i) The glucose signal inhibited UASru activity through the cyclic AMP (cAMP/protein kinase A (PKA) pathway, targeting the transcription factors (TFs), Com2 and Sko1; (ii) high osmolarity activated UASru through the Hog1/mitogen-activated protein kinase (MAPK) pathway and its corresponding TF Sko1; (iii) elevated temperature increased the activity of UASru through the cell wall integrity pathway and the TFs Swi4/Mpk1 and Swi4/Mlp1; (iv) the nitrogen source repressed UASru activity through Sum1; and (v) the absence of a nitrogen source was detected and transmitted to UASru by the Kss1 and Fus3 MAPK pathways through their respective downstream TFs, Ste12/Tec1 and Ste12/Ste12 as well as by their regulators Dig1/2. These signaling events were specific to UASru; they did not affect the mating and filamentation response elements that are regulated by MAPK pathways. The complex regulation of UASru through all the known vegetative MAPK pathways is unique to S. cerevisiae and is specific for IME1, likely because it is the master regulator of gametogenesis.     Chromatin Immunoprecipitation (ChIP) ChIP assays were performed essentially as described [10].
 ```
 
 >**Column descriptions:**
@@ -188,35 +194,30 @@ PMID    Evidence        Abstract
 >* PMID: PubMed ID of the article.
 >* Evidence: TFB/TFR article, if it contains TFB/TFR evidence; non-TFB//non-TFR article, if it does not describe TFB or TFR evidence.
 >* Abstract: abstract of the paper.
+>* Experiment Description: The sentence that may contain information of the experiment carried out in this research.
+
+eg. non-TFB_articles.txt
+
+```
+PMID    Evidence    Abstract
+10940042    non-TFB article    The phenotype of an organism is the manifestation of its expressed genome. The gcr1 mutant of yeast grows at near wild-type rates on nonfermentable carbon sources but exhibits a severe growth defect when grown in the presence of glucose, even when nonfermentable carbon sources are available. Using DNA microarrays, the genomic expression patterns of wild-type and gcr1 mutant yeast growing on various media, with and without glucose, were compared. A total of 53 open reading frames (ORFs) were identified as GCR1 dependent based on the criterion that their expression was reduced twofold or greater in mutant versus wild-type cultures grown in permissive medium consisting of YP supplemented with glycerol and lactate. The GCR1-dependent genes, so defined, fell into three classes: (i) glycolytic enzyme genes, (ii) ORFs carried by Ty elements, and (iii) genes not previously known to be GCR1 dependent. In wild-type cultures, GCR1-dependent genes accounted for 27% of the total hybridization signal, whereas in mutant cultures, they accounted for 6% of the total. Glucose addition to the growth medium resulted in a reprogramming of gene expression in both wild-type and mutant yeasts. In both strains, glycolytic enzyme gene expression was induced by the addition of glucose, although the expression of these genes was still impaired in the mutant compared to the wild type. By contrast, glucose resulted in a strong induction of Ty-borne genes in the mutant background but did not greatly affect their already high expression in the wild-type background. Both strains responded to glucose by repressing the expression of genes involved in respiration and the metabolism of alternative carbon sources. Thus, the severe growth inhibition observed in gcr1 mutants in the presence of glucose is the result of normal signal transduction pathways and glucose repression mechanisms operating without sufficient glycolytic enzyme gene expression to support growth via glycolysis alone.
+```
+
+>**Column descriptions:**
+
+>* PMID: PubMed ID of the article.
+>* Evidence: non-TFB/non-TFR article, if it does not describe TFB or TFR evidence.
+>* Abstract: Abstract of the paper.
 
 ### **Stage II Outputs**
 
 Stage II outputs contain the following: 
 
 ```
-tfb_output/TF-gene_Pair_Details/ 
 tfb_output/TF-gene_transcriptional_relation_summary.tsv
-tfb_ouptut/Experimental_condition_summary.tsv
+tfb_output/TF-gene_Pair_Details/ 
+tfb_ouptut/download_xml/
 ```
-
-You can find the folder named "TF-gene\_Pair\_Details" in the output folder. In this folder, subdirectories named TFB and TFR and the corresponding {TF}\_{GENE} folders specify the detailed sentence descriptions in the file named {PMID}.txt.
-
-eg. TFB/YPR065W_YOR011W/23435728.txt
-
-```
-TF_ORF  TF_Alias        Gene_ORF        Gene_Alias      PMID    Evidence        Sentence_Description
-YPR065W YPR065WP|ROX1|ROX1P|REO1|REO1P  YOR011W AUS1    23435728        binding Several genes which encode diverse transport functions of the cell were identified here to be overexpressed in the mot3 rox1 mutant strain. These genes are FET4, ZRT1, HXT9, ATO3, PHO89, YHK8, YCT1, and AUS1, involved in iron, zinc, sugar, ammonia, phosphate, multidrug, cysteine, and sterol transport, respectively.<sep>These genes are FET4, ZRT1, HXT9, ATO3, PHO89, YHK8, YCT1, and AUS1, involved in iron, zinc, sugar, ammonia, phosphate, multidrug, cysteine, and sterol transport, respectively. In the case of the Fet4 alone, low-affinity iron permease, an oxygen-dependent regulation involving the Rox1 repressor function has been described previously (31, 32).<sep>Here, we identify more target genes repressed by Mot3 and Rox1 under acute salt stress which are related to sterol uptake and biosynthesis, such as ECM22, RTA1, SUT1, and AUS1 (Fig. 7).
-```
-
->**Column descriptions:**
-
->* TF_ORF: TF ORF names.
->* TF_Alias: The aliases of the TF.
->* Gene_ORF: gene ORF names.
->* Gene_Alias: The aliases of the gene.
->* PMID: PubMed ID of the article.
->* Evidence: binding/regulatory relation identified for the TF-gene pairs.
->* Sentence_Description: Sentence descriptions for the TF-gene pair found in the article that supports the evidence.
 
 
 eg.  TF-gene\_transcriptional\_relation\_summary.tsv
@@ -239,17 +240,21 @@ YDR207C YDR207CP|UME6|UME6P|CAR80|CAR80P|NIM2|NIM2P|RIM16|RIM16P        YJL089W 
 >* Relation: TF binding (TFB) relations or TF regulatory (TFR) relations.
 >* PMIDs: PubMed IDs that support the TF-gene transcriptional relation pairs.
 
+You can find the folder named "TF-gene\_Pair\_Details" in the output folder. In this folder, subdirectories named TFB and TFR and the corresponding {TF}\_{GENE} folders specify the detailed sentence descriptions in the file named {PMID}.txt.
 
-eg. Experimental\_condition\_summary.tsv
+eg. TFB/YPR065W_YOR011W/23435728.txt
 
 ```
-PMID    Experiment Description
-10510295        Northern-blot analysis shows that the GLK1 gene is expressed at a basal level in the presence of glucose, de-repressed more than 6-fold under conditions of sugar limitation and more than 25-fold under conditions of ethanol induction.       Northern-blot analysis shows that the GLK1 gene is expressed at a basal level in the presence of glucose, de-repressed more than 6-fold under conditions of sugar limitation and more than 25-fold under conditions of ethanol induction.
-23435728        Chromatin immunoprecipitation (ChIP) was performed as described previously (30).Quantitative PCR analyses at the indicated chromosomal loci were performed in real time using an Applied Biosystems 7500 sequence detector with the POL1 coding sequence (+1796/+1996) as an internal control.  Chromatin immunoprecipitation (ChIP) was performed as described previously (30).Quantitative PCR analyses at the indicated chromosomal loci were performed in real time using an Applied Biosystems 7500 sequence detector with the POL1 coding sequence (+1796/+1996) as an internal control.
+TF_ORF  TF_Alias        Gene_ORF        Gene_Alias      PMID    Evidence        Sentence_Description
+YPR065W YPR065WP|ROX1|ROX1P|REO1|REO1P  YOR011W AUS1    23435728        binding Several genes which encode diverse transport functions of the cell were identified here to be overexpressed in the mot3 rox1 mutant strain. These genes are FET4, ZRT1, HXT9, ATO3, PHO89, YHK8, YCT1, and AUS1, involved in iron, zinc, sugar, ammonia, phosphate, multidrug, cysteine, and sterol transport, respectively.<sep>These genes are FET4, ZRT1, HXT9, ATO3, PHO89, YHK8, YCT1, and AUS1, involved in iron, zinc, sugar, ammonia, phosphate, multidrug, cysteine, and sterol transport, respectively. In the case of the Fet4 alone, low-affinity iron permease, an oxygen-dependent regulation involving the Rox1 repressor function has been described previously (31, 32).<sep>Here, we identify more target genes repressed by Mot3 and Rox1 under acute salt stress which are related to sterol uptake and biosynthesis, such as ECM22, RTA1, SUT1, and AUS1 (Fig. 7).
 ```
 
 >**Column descriptions:**
 
+>* TF_ORF: TF ORF names.
+>* TF_Alias: The aliases of the TF.
+>* Gene_ORF: gene ORF names.
+>* Gene_Alias: The aliases of the gene.
 >* PMID: PubMed ID of the article.
->* Experiment Description: paragraph contains a potential experiment.
-
+>* Evidence: binding/regulatory relation identified for the TF-gene pairs.
+>* Sentence_Description: Sentence descriptions for the TF-gene pair found in the article that supports the evidence.

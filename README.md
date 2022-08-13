@@ -123,7 +123,7 @@ pip install https://github.com/explosion/spacy-models/releases/download/en_core_
 
 9. Run YTLR and predict the results. The results will be saved in the output folder specified with the -o parameter. The program will download some essential data on the first use.
 ```
-python main.py -i <path to input directory> -d <tfb/tfr/both> -check <0/1> -o <path to the output directory>
+python main.py -i <path to input directory> -d <tfb/tfr/both> -check <0/1> -download <0/1> -o <path to the output directory>
 ```
 
 >**Required arguments:**
@@ -134,11 +134,15 @@ python main.py -i <path to input directory> -d <tfb/tfr/both> -check <0/1> -o <p
 
 >* -check: Check if the article relates to the yeast species (1 --> check, 0 -> do not check, default = 1).
 
+>* -download: Check if the user wants to use the auto full text retrieval script based on the PMC FTP service (1 -> yes, 0 -> no, default = 1).
+
+
 >* -o: The output directory for the results. 
 
 
 **Notice!**
-It may take a while to download the full texts using the PMC ftp services due to its file package structures. 
+
+***It may take a while (generally, half an hour to several hours, depending on the network bandwidth and the number of articles given) to download the full texts using the PMC ftp services due to its file package structures. We do not suggest using wifi connections for this automated script since the download process may break in wifi transmissions.***
 
 # Example and Output Results
 
@@ -224,11 +228,24 @@ eg.  TF-gene\_transcriptional\_relation\_summary.tsv
 
 ```
 TF_ORF  TF_Alias        Gene_ORF        Gene_Alias      Relation        PMIDs
-YDR207C YDR207CP|UME6|UME6P|CAR80|CAR80P|NIM2|NIM2P|RIM16|RIM16P        YBL078C ATG8|APG8|AUT7|CVT5     TFB     25957495
-YDR207C YDR207CP|UME6|UME6P|CAR80|CAR80P|NIM2|NIM2P|RIM16|RIM16P        YBR116C         TFB     25957495
-YDR207C YDR207CP|UME6|UME6P|CAR80|CAR80P|NIM2|NIM2P|RIM16|RIM16P        YIR016W         TFB     25957495
-YDR207C YDR207CP|UME6|UME6P|CAR80|CAR80P|NIM2|NIM2P|RIM16|RIM16P        YMR101C SRT1    TFB     25957495
-YDR207C YDR207CP|UME6|UME6P|CAR80|CAR80P|NIM2|NIM2P|RIM16|RIM16P        YJL089W SIP4    TFB     25957495
+YBL103C YBL103CP|RTG3|RTG3P     YCR005C CIT2    TFB     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YCR005C CIT2    TFR     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YLR304C ACO1|GLU1       TFB     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YLR304C ACO1|GLU1       TFR     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YNL037C IDH1    TFB     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YNL037C IDH1    TFR     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YNR001C CIT1|CS1|LYS6   TFB     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YNR001C CIT1|CS1|LYS6   TFR     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YOR136W IDH2    TFB     10490611
+YBL103C YBL103CP|RTG3|RTG3P     YOR136W IDH2    TFR     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YBL103C RTG3    TFB     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YLR304C ACO1|GLU1       TFB     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YLR304C ACO1|GLU1       TFR     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YNL037C IDH1    TFB     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YNL037C IDH1    TFR     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YNR001C CIT1|CS1|LYS6   TFB     10490611
+YGL252C YGL252CP|RTG2|RTG2P     YNR001C CIT1|CS1|LYS6   TFR     10490611
+
 ```
 
 >**Column descriptions:**
@@ -246,7 +263,7 @@ eg. TFB/YPR065W_YOR011W/23435728.txt
 
 ```
 TF_ORF  TF_Alias        Gene_ORF        Gene_Alias      PMID    Evidence        Sentence_Description
-YPR065W YPR065WP|ROX1|ROX1P|REO1|REO1P  YOR011W AUS1    23435728        binding Several genes which encode diverse transport functions of the cell were identified here to be overexpressed in the mot3 rox1 mutant strain. These genes are FET4, ZRT1, HXT9, ATO3, PHO89, YHK8, YCT1, and AUS1, involved in iron, zinc, sugar, ammonia, phosphate, multidrug, cysteine, and sterol transport, respectively.<sep>These genes are FET4, ZRT1, HXT9, ATO3, PHO89, YHK8, YCT1, and AUS1, involved in iron, zinc, sugar, ammonia, phosphate, multidrug, cysteine, and sterol transport, respectively. In the case of the Fet4 alone, low-affinity iron permease, an oxygen-dependent regulation involving the Rox1 repressor function has been described previously (31, 32).<sep>Here, we identify more target genes repressed by Mot3 and Rox1 under acute salt stress which are related to sterol uptake and biosynthesis, such as ECM22, RTA1, SUT1, and AUS1 (Fig. 7).
+YGL252C YGL252CP|RTG2|RTG2P     YNR001C CIT1|CS1|LYS6   10490611        TF-gene binding pair We show that as the cells' respiratory function is reduced or eliminated, the expression of four TCA cycle genes, CIT1, ACO1, IDH1, and IDH2, switches from HAP control to control by three genes, RTG1, RTG2, and RTG3.
 ```
 
 >**Column descriptions:**

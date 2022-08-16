@@ -144,6 +144,8 @@ python main.py -i <path to input directory> -d <tfb/tfr/both> -check <0/1> -down
 
 ***It may take a while (generally, half an hour to several hours, depending on the network bandwidth and the number of articles given) to download the full texts using the PMC ftp services due to its file package structures. We do not suggest using wifi connections for this automated script since the download process may break in wifi transmissions.***
 
+***And due to the restriction of the term usage of the PMC ftp services, only part of the full texts in PMC can be downloaded via this service. Those articles that cannot be downloaded through the PMC ftp services may require an additional PMC website "Save as..." action for each of them. ***
+
 # Example and Output Results
 
 If we use the example inputs with the example command:

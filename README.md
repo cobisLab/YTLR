@@ -53,7 +53,7 @@ conda deactivate YTLR
 1. Download the codes. Please skip this if you have already downloaded the codes.
 
 ```
-wget https://cobishss0.im.nuk.edu.tw/YTLR/YTLR.tar.gz
+wget https://cobis.bme.ncku.edu.tw/YTLR/YTLR.tar.gz
 ```
 
 2. Unzip the file.
@@ -71,7 +71,7 @@ cd YTLR/
 4. Download the model from the following link and unzip the file. Please skip it if you have done this step.
 
 ```
-wget https://cobisHSS0.im.nuk.edu.tw/YTLR/Model.tar.gz
+wget https://cobis.bme.ncku.edu.tw/YTLR/Model.tar.gz
 
 tar zxvf Model.tar.gz
 ```

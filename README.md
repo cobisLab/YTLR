@@ -90,6 +90,14 @@ If the second command fails, try below:
 pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.2.0/en_core_web_trf-3.2.0.tar.gz
 ```
 
+Notice that if you have GPU support in your system, you can activate the GPU support in YTLR by the following command:
+
+```
+conda install pytorch torchvision torchaudio cudatoolkit=<version> -c pytorch
+```
+
+Remember to specify the current version of your cuda GPU support. 
+
 6. Prepare the inputs for YTLR. In YTLR, users can input a list of abstracts downloaded using the PubMed download function. 
     >***HOW TO GET ABSTRACTS FROM PubMed***
     >>1. Search the PubMed website for specific keywords to obtain the lists of articles. 
